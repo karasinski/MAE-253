@@ -1,0 +1,76 @@
+\documentclass{tufte-handout}
+% \documentclass{article}
+
+%\date{28 March 2010} % without \date command, current date is supplied
+
+% \geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{amsmath}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+\usepackage{listings}
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name - - adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+\begin{document}
+
+\title{MAE-253: Homework 2a}
+\author[John Karasinski]{John Karasinski}
+\maketitle% this prints the handout title, author, and date
+
+\section{Project Overview}
+
+Project Members: \\
+Ehsan Gholami, John Karasinski, Jenette Sellin, Dmitry Shemetov \\
+\vspace{1em}
+
+We are looking to perform community detection in online information sharing communities, and to compare network properties across different communities. We have large data sets from Reddit, StackExchange, and HackerNews, and we're looking to build networks from the commenting dynamics contained within. One of the more interesting phenomena in online communities is Eternal September. Simply put, this is when the popularity of a community reaches a critical threshold beyond which no central core of the members are in control; new users constantly come in and bring the signal to noise ratio down heavily.
+
+\section{Literature Review}
+
+\noindent {Fast unfolding of communities in large networks}~\cite{blondel2008fast}
+
+This paper proposes the ``Louvain'' method, a community detection technique which they show to outperform prior techniques in terms of computation time. The technique attempts to maximize the modularity of the groups by a two step process. The technique first locally maximizes the modularity by changing the community of each node, then aggregates the nodes and links in each community to create a new network of communities. This process iterates until the modularity is maximized. They go on to validate their method with a Belgian mobile phone network, which they also show to be substantially faster then several other methods. \\
+\vspace{1em}
+
+\noindent {Community structure in social and biological networks}~\cite{girvan2002community}
+
+This paper introduces a new method of detecting community structure by focusing on eges which the least central between communities. These least central edges are the most between communities, and communities are detected by iteratively removing edges from the original graph. This algorithm has a worst-case run time on the order of $m^2n$, where $m$ is the number of edges, and $n$ is the number of vertices, though the authors claim that the actual run time is much better for networks with large community structure. The authors go on to test their method on two real-world networks and show that there is good agreement between their results and previous results from other methods. \\
+\vspace{1em}
+
+\noindent {Network motifs: simple building blocks of complex networks.}~\cite{milo2002network}
+
+This paper studies the network motifs present in complex networks, and investigate those that occur much more frequently than one would expect from a random network. They define motifs as ``recurring, significant patterns of interconnections'', and create an algorithm to detect motifs with node size $n=3$ and $n=4$. The authors apply their algorithm to several real world networks, and make observations about the motifs that appear frequently among them. They finish by saying that these motifs are present at all network and subnetwork sizes, making the motifs a good identifier of the network or subnetwork. \\
+\vspace{1em}
+
+\noindent {Expertise networks in online communities: structure and algorithms}~\cite{zhang2007expertise}
+
+This paper studies an online community, the Java Forum, and compares different algorithms to measure user expertise. They characterize the network as having a bow tie structure, similar to how others have characterized the web. The authors go on to calculate the expertise of users based off simple statistical measures (ie, how many posts a user makes), z-score measures, a page-rank-esque algorithm, and HITS Authority. The authors went on to have two `Java programming experts' manually rank a random sampling of 135 users by their expertise on a 5 level scale, from `Newbie' to `Top Java expert'. They then compare the results of all of these algorithms, and find that the simple metrics perform as-well or better than the more complicated methods, and that structural information of the networks can be used to evaulate the expertise of individual users. The authors finish by using these results to model and simulate the Java Forum network to study the dynamics of the communities within.
+
+\clearpage
+\bibliography{sample-handout}
+\bibliographystyle{plainnat}
+
+\end{document}
+
+
+
+
+
+
+
